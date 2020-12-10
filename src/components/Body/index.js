@@ -20,11 +20,11 @@ class Body extends Component {
     this.insertElementOnList("André", 18, "Eu sou um developer");
   }
 
-  insertElementOnList(nome, idade, descricao) {
+  insertElementOnList() {
+    let nome = document.getElementById("create_input").value;
     let listElement = {
       name: nome,
-      age: idade,
-      description: [descricao]
+      description: []
     };
     this.setState(
       {
@@ -121,9 +121,10 @@ class Body extends Component {
     return (
       <div>
         <h1>Seja bem vindo!</h1>
+        <input id="create_input" />
         <button
           onClick={() => {
-            this.insertElementOnList("André", 18, "Eu sou um developer");
+            this.insertElementOnList();
           }}
         >
           Criar Lista
