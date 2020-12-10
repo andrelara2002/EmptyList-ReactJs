@@ -1,3 +1,3 @@
-# react-ofdfrf
+Atualização do Empty List padrão, convertendo em React Js e adicionando incríveis novas Features!
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-ofdfrf)
+Atualizações constantes em andamento! Recomendo que ainda não seja armazenado nada importante por hora. Obrigado!
