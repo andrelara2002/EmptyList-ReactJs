@@ -32,6 +32,7 @@ class Body extends Component {
       },
       () => {
         this.insertLists();
+        this.saveToStorage();
       }
     );
   }
@@ -137,7 +138,6 @@ class Body extends Component {
   render() {
     return (
       <div className="main">
-        <h1>Seja bem vindo!</h1>
         <div className="input_div">
           <h2>TITULO</h2>
           <input id="create_input" placeholder="Insira o título de sua lista" />

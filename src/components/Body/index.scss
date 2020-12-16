@@ -82,18 +82,27 @@ button {
     margin: 0 0 0 1rem;
   }
 }
-
 ul {
   list-style: none;
   padding: 0.2rem;
 
-  border: 1px solid lightgrey;
   padding: 1rem;
 }
-
 @media (min-width: 1000px) {
   .main {
+    margin-top: 2rem;
+  }
+  .full_button {
+    height: 100%;
+  }
+  ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  li {
+    border: 1px solid lightgray;
+    padding: 1rem;
+
+    margin: 1rem 1rem;
   }
 }

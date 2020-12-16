@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
+import logo from "../../images/empty-list-logo.svg";
+import "./styles.scss";
+
 class Header extends Component {
   render() {
     return (
-      <div>
-        <h1>empty list</h1>
+      <div className="header_image">
+        <img src={logo} />
       </div>
     );
   }
