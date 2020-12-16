@@ -1,0 +1,89 @@
+* {
+  font-family: sans-serif;
+}
+.input_task_session {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 4fr 1fr 1fr;
+  border: 1px solid lightgrey;
+}
+.input_task_session button {
+  margin: 0;
+}
+.input_task_session input {
+  border: 0;
+  padding: 0.2rem 1rem;
+}
+button {
+  padding: 0.4rem 0.6rem;
+  background: black;
+  color: white;
+  transition: 300ms;
+  border: 1px solid black;
+  margin: 1rem 0.4rem;
+}
+button:hover {
+  background: white;
+  color: black;
+  transition: 300ms;
+  cursor: pointer;
+}
+.input_div {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 5fr;
+  justify-content: space-evenly;
+  border: 1px solid lightgrey;
+}
+.input_div h2 {
+  font-size: 0.8rem;
+  margin: auto auto;
+}
+.input_div input {
+  border: none;
+  border-left: 1px solid lightgrey;
+  padding: 1rem;
+}
+.full_button {
+  width: 100%;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1rem;
+}
+.list_inside_element {
+  border: 1px solid lightgrey;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0 0 0;
+  text-align: start;
+}
+.list_inside_element button {
+  margin: 0 0 0 1rem;
+}
+ul {
+  list-style: none;
+  padding: 0.2rem;
+  padding: 1rem;
+}
+@media (min-width: 1000px) {
+  .main {
+    margin-top: 2rem;
+  }
+  .full_button {
+    height: 100%;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  li {
+    border: 1px solid lightgray;
+    padding: 1rem;
+    margin: 1rem 1rem;
+  }
+}

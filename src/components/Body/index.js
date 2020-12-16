@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./index.scss";
+import "./styles.css";
 //https://api.github.com/users/andrelara2002/repos
 class Body extends Component {
   constructor(props) {
