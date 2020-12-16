@@ -74,7 +74,7 @@ class Body extends Component {
   getDescriptions = numero => {
     return this.state.listas[numero].description.map((value, idx) => {
       return (
-        <p>
+        <p className="list_inside_element">
           {value}
           <button
             onClick={() => {
@@ -105,7 +105,7 @@ class Body extends Component {
   insertLists = () => {
     return this.state.listas.map((value, idx) => {
       return (
-        <li key={idx}>
+        <li className="list_inside" key={idx}>
           <h1>{value.name}</h1>
           <p>{this.getDescriptions(idx)}</p>
           <div className="input_task_session">
@@ -143,11 +143,12 @@ class Body extends Component {
           <input id="create_input" />
         </div>
         <button
+          className="full_button"
           onClick={() => {
             this.insertElementOnList();
           }}
         >
-          Criar Lista
+          CRIAR LISTA
         </button>
         <ul class="bg-gray-50">{this.insertLists()}</ul>
       </div>
