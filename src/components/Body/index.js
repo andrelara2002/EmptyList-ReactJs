@@ -109,7 +109,7 @@ class Body extends Component {
           <h1>{value.name}</h1>
           <p>{this.getDescriptions(idx)}</p>
           <div className="input_task_session">
-            <input id={`input${idx}`} />
+            <input id={`input${idx}`} placeholder="Insira uma nota" />
             <button
               onClick={() => {
                 this.insertTaskOnList({ idx });
@@ -140,7 +140,7 @@ class Body extends Component {
         <h1>Seja bem vindo!</h1>
         <div className="input_div">
           <h2>TITULO</h2>
-          <input id="create_input" />
+          <input id="create_input" placeholder="Insira o título de sua lista" />
         </div>
         <button
           className="full_button"
@@ -150,7 +150,7 @@ class Body extends Component {
         >
           CRIAR LISTA
         </button>
-        <ul class="bg-gray-50">{this.insertLists()}</ul>
+        <ul>{this.insertLists()}</ul>
       </div>
     );
   }

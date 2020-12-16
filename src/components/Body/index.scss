@@ -5,7 +5,18 @@
   display: grid;
 
   grid-template-rows: 1fr;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr;
+
+  border: 1px solid lightgrey;
+
+  & button {
+    margin: 0;
+  }
+
+  & input {
+    border: 0;
+    padding: 0.2rem 1rem;
+  }
 }
 button {
   padding: 0.4rem 0.6rem;
@@ -75,4 +86,7 @@ button {
 ul {
   list-style: none;
   padding: 0.2rem;
+
+  border: 1px solid lightgrey;
+  padding: 1rem;
 }
