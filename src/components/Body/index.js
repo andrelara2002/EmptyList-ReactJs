@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.scss";
-
+//https://api.github.com/users/andrelara2002/repos
 class Body extends Component {
   constructor(props) {
     super();
@@ -136,7 +136,7 @@ class Body extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
         <h1>Seja bem vindo!</h1>
         <div className="input_div">
           <h2>TITULO</h2>
