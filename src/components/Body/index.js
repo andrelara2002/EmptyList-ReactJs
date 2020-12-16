@@ -3,7 +3,9 @@ import React, { Component } from "react";
 class Body extends Component {
   constructor(props) {
     super();
-    this.state = {
+    this.state = JSON.parse(
+      localStorage.getItem("empty_list_full_reactjs")
+    ) || {
       dia_atual: null,
       list_names: [],
       listas: [
@@ -115,6 +117,10 @@ class Body extends Component {
         </li>
       );
     });
+  };
+
+  saveToStorage = () => {
+    localStorage.setItem("empty_list_full_reactjs", JSON.stringify(this.state));
   };
 
   render() {
