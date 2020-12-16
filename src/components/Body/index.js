@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./index.scss";
 
 class Body extends Component {
   constructor(props) {
@@ -10,17 +11,14 @@ class Body extends Component {
       list_names: [],
       listas: [
         {
-          name: "nome",
-          age: "idade",
-          description: ["descricao"]
+          name: "Esta é uma lista",
+          description: ["Exclua ela para começar!"]
         }
       ]
     };
   }
 
-  componentDidMount() {
-    this.insertElementOnList("André", 18, "Eu sou um developer");
-  }
+  componentDidMount() {}
 
   insertElementOnList() {
     let nome = document.getElementById("create_input").value;
@@ -48,6 +46,7 @@ class Body extends Component {
       },
       () => {
         console.log(copy_state.listas[0]);
+        this.saveToStorage();
       }
     );
   };
@@ -62,9 +61,14 @@ class Body extends Component {
 
     input_value.value = "";
 
-    this.setState({
-      listas: copy_state.listas
-    });
+    this.setState(
+      {
+        listas: copy_state.listas
+      },
+      () => {
+        this.saveToStorage();
+      }
+    );
   };
 
   getDescriptions = numero => {
@@ -88,9 +92,14 @@ class Body extends Component {
     let copy_state = this.state;
     copy_state.listas.splice(num, 1);
 
-    this.setState({
-      listas: copy_state.listas
-    });
+    this.setState(
+      {
+        listas: copy_state.listas
+      },
+      () => {
+        this.saveToStorage();
+      }
+    );
   };
 
   insertLists = () => {
@@ -99,21 +108,23 @@ class Body extends Component {
         <li key={idx}>
           <h1>{value.name}</h1>
           <p>{this.getDescriptions(idx)}</p>
-          <input id={`input${idx}`} />
-          <button
-            onClick={() => {
-              this.insertTaskOnList({ idx });
-            }}
-          >
-            Adicionar
-          </button>
-          <button
-            onClick={() => {
-              this.deleteList({ idx });
-            }}
-          >
-            Deletar
-          </button>
+          <div className="input_task_session">
+            <input id={`input${idx}`} />
+            <button
+              onClick={() => {
+                this.insertTaskOnList({ idx });
+              }}
+            >
+              Adicionar
+            </button>
+            <button
+              onClick={() => {
+                this.deleteList({ idx });
+              }}
+            >
+              Deletar
+            </button>
+          </div>
         </li>
       );
     });
@@ -127,7 +138,10 @@ class Body extends Component {
     return (
       <div>
         <h1>Seja bem vindo!</h1>
-        <input id="create_input" />
+        <div className="input_div">
+          <h2>TITULO</h2>
+          <input id="create_input" />
+        </div>
         <button
           onClick={() => {
             this.insertElementOnList();
@@ -135,7 +149,7 @@ class Body extends Component {
         >
           Criar Lista
         </button>
-        <ul>{this.insertLists()}</ul>
+        <ul class="bg-gray-50">{this.insertLists()}</ul>
       </div>
     );
   }
