@@ -28,6 +28,9 @@ button:hover {
   transition: 300ms;
   cursor: pointer;
 }
+button:focus {
+  outline: none;
+}
 .input_div {
   display: grid;
   grid-template-rows: 1fr;

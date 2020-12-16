@@ -22,19 +22,24 @@ class Body extends Component {
 
   insertElementOnList() {
     let nome = document.getElementById("create_input").value;
-    let listElement = {
-      name: nome,
-      description: []
-    };
-    this.setState(
-      {
-        listas: this.state.listas.concat(listElement)
-      },
-      () => {
-        this.insertLists();
-        this.saveToStorage();
-      }
-    );
+    if (nome != "") {
+      let listElement = {
+        name: nome,
+        description: []
+      };
+      this.setState(
+        {
+          listas: this.state.listas.concat(listElement)
+        },
+        () => {
+          this.insertLists();
+          document.getElementById("create_input").value = "";
+          this.saveToStorage();
+        }
+      );
+    } else {
+      alert("Insira um Nome para a Lista");
+    }
   }
 
   deleteElement = (num, numero) => {
@@ -60,14 +65,13 @@ class Body extends Component {
     copy_item.description.push(input_value.value);
     copy_state.listas[num.idx].description = copy_item.description;
 
-    input_value.value = "";
-
     this.setState(
       {
         listas: copy_state.listas
       },
       () => {
         this.saveToStorage();
+        input_value.value = "";
       }
     );
   };
@@ -91,11 +95,11 @@ class Body extends Component {
 
   deleteList = num => {
     let copy_state = this.state;
-    copy_state.listas.splice(num, 1);
+    copy_state.listas.splice(num.idx, 1);
 
     this.setState(
       {
-        listas: copy_state.listas
+        copy_state
       },
       () => {
         this.saveToStorage();
