@@ -139,6 +139,36 @@ class Body extends Component {
     localStorage.setItem("empty_list_full_reactjs", JSON.stringify(this.state));
   };
 
+  downloadFile = () => {
+    const myData = this.state;
+
+    const fileName = "my_notes_-_empty_list";
+    const json = JSON.stringify(myData);
+    const blob = new Blob([json], { type: "application/json" });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = href;
+    link.download = fileName + ".json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  setDataFromJson = value => {
+    let copy_state = this.state;
+
+    var files = value.files;
+    var file = files[0];
+
+    if (!file) return;
+
+    var reader = new FileReader();
+    reader.onload = function() {};
+
+    let redero = reader.readAsText(file);
+    console.log(redero.result);
+  };
+
   render() {
     return (
       <div className="main">
