@@ -81,7 +81,7 @@ class Body extends Component {
     return this.state.listas[numero].description.map((value, idx) => {
       return (
         <p className="list_inside_element">
-          <input id={'task-title' + idx} value={value} onChange={() => { this.changeText(idx, numero) }} className='task-input' />
+          <input id={'task-title' +numero+idx} value={value} onChange={() => { this.changeText(idx, numero) }} className='task-input' />
           <button
             onClick={() => {
               this.deleteElement(idx, numero);
@@ -146,7 +146,8 @@ class Body extends Component {
 
   changeText = (idx, numero) => {
     let state_ = this.state
-    let text = document.getElementById('task-title' + idx).value
+    let text = document.getElementById('task-title' +numero+idx).value
+    console.log(text)
 
     state_.listas[numero].description[idx] = text
     this.setState({ state_ }, () => {
