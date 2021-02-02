@@ -1,3 +1,28 @@
-h1, p {
-  font-family: Lato;
+:root {
+  --color-green: linear-gradient(263.69deg, #84B8E2 -5.62%, #86D0CB 77.09%);
+  --color-red: linear-gradient(263.69deg, #84B8E2 -5.62%, #86D0CB 77.09%);
+  --simple-green: #86D0CB;
+}
+
+footer{
+  position: absolute;
+  bottom: -50px;
+  background: var(--color-green);
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+footer p{
+  color: white;
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }

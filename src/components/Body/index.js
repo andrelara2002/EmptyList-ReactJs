@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import "./styles.css";
+import "./styles.scss";
+import '../../style.css'
+import logo from '../../images/empty-list-logo.svg'
 //https://api.github.com/users/andrelara2002/repos
 class Body extends Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Body extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   insertElementOnList() {
     let nome = document.getElementById("create_input").value;
@@ -86,7 +88,7 @@ class Body extends Component {
               this.deleteElement(idx, numero);
             }}
           >
-            excluir
+            x
           </button>
         </p>
       );
@@ -163,7 +165,7 @@ class Body extends Component {
     if (!file) return;
 
     var reader = new FileReader();
-    reader.onload = function() {};
+    reader.onload = function () { };
 
     let redero = reader.readAsText(file);
     console.log(redero.result);
@@ -172,18 +174,23 @@ class Body extends Component {
   render() {
     return (
       <div className="main">
-        <div className="input_div">
-          <h2>TITULO</h2>
-          <input id="create_input" placeholder="Insira o título de sua lista" />
-        </div>
-        <button
-          className="full_button"
-          onClick={() => {
-            this.insertElementOnList();
-          }}
-        >
-          CRIAR LISTA
+        <div className='major-input'>
+          <img src={logo} />
+          <div className='minor-input'>
+            <div className="input_div">
+              <h2>TITULO</h2>
+              <input id="create_input" placeholder="Insira o título de sua lista" />
+            </div>
+            <button
+              className="full_button"
+              onClick={() => {
+                this.insertElementOnList();
+              }}
+            >
+              CRIAR LISTA
         </button>
+          </div>
+        </div>
         <ul>{this.insertLists()}</ul>
       </div>
     );
