@@ -4,7 +4,7 @@ img {
 
 .header_image {
   display: flex;
-  justify-content: center;
-
-  padding: 1rem;
+  justify-content: flex-end;
+  background: var(--simple-green);
+  padding: .2rem 1rem;
 }

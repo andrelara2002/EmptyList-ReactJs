@@ -1,5 +1,5 @@
 * {
-  font-family: sans-serif;
+  font-family: "Comfortaa", cursive;
 }
 .input_task_session {
   display: grid;
@@ -21,6 +21,32 @@
   }
 }
 
+#create_input {
+  padding: 1rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+.title-input {
+  font: 700 1.6rem 'Comfortaa', cursive;
+  color: var(--simple-green);
+  border: none;
+  border: 1px solid white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  transition: 300ms;
+
+  &:focus {
+    outline: none;
+    border-color: var(--simple-green);
+    transition: 300ms;
+  }
+  &:hover {
+    border-color: #e6e6e6;
+    transition: 300ms;
+  }
+}
 button {
   padding: 0.4rem 0.6rem;
   background: var(--color-green);
@@ -60,6 +86,23 @@ button {
     padding: 1rem;
   }
 }
+
+.task-input {
+  font: 300 1.2rem 'Comfortaa', cursive;
+  border: 1px solid #e6e6e6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+
+  &:focus {
+    outline: none;
+    border-color: var(--simple-green);
+    transition: 300ms;
+  }
+  &:hover {
+    border-color: #e6e6e6;
+    transition: 300ms;
+  }
+}
 .full_button {
   width: 100%;
   max-height: 3rem;
@@ -83,6 +126,7 @@ button {
 .list_inside {
   padding: 1rem 0.7rem;
   margin: 10px;
+  background: white;
 }
 .list_inside_element button {
   margin: 0 0 0 1rem;
@@ -123,10 +167,12 @@ li {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin-left: 3rem;
+    margin-left: 1rem;
   }
   .main {
-    margin-top: 2rem;
+    padding: 1rem 0;
+    margin: 0;
+    min-height: calc(100vh - 82px);
   }
   .full_button {
     height: 100%;

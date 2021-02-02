@@ -50,10 +50,9 @@ class Body extends Component {
     copy_state.listas[numero].description.splice(num, 1);
     this.setState(
       {
-        listas: copy_state.listas
+        copy_state
       },
       () => {
-        console.log(copy_state.listas[0]);
         this.saveToStorage();
       }
     );
@@ -82,7 +81,7 @@ class Body extends Component {
     return this.state.listas[numero].description.map((value, idx) => {
       return (
         <p className="list_inside_element">
-          {value}
+          <input id={'task-title' + idx} value={value} onChange={() => { this.changeText(idx, numero) }} className='task-input' />
           <button
             onClick={() => {
               this.deleteElement(idx, numero);
@@ -112,8 +111,8 @@ class Body extends Component {
   insertLists = () => {
     return this.state.listas.map((value, idx) => {
       return (
-        <li className="list_inside" key={idx}>
-          <h1>{value.name}</h1>
+        <li className="list_inside" key={value + idx}>
+          <textarea rows='2' cols='30' style={{ resize: "none" }} className='title-input' value={value.name} id={'title-input' + idx} onChange={() => { this.changeTitle(idx) }} />
           <p>{this.getDescriptions(idx)}</p>
           <div className="input_task_session">
             <input id={`input${idx}`} placeholder="Insira uma nota" />
@@ -136,6 +135,24 @@ class Body extends Component {
       );
     });
   };
+
+  changeTitle = idx => {
+    let state_ = this.state
+    let text = document.getElementById('title-input' + idx).value
+
+    state_.listas[idx].name = text
+    this.setState({ state_ }, () => { this.saveToStorage() })
+  }
+
+  changeText = (idx, numero) => {
+    let state_ = this.state
+    let text = document.getElementById('task-title' + idx).value
+
+    state_.listas[numero].description[idx] = text
+    this.setState({ state_ }, () => {
+      this.saveToStorage()
+    })
+  }
 
   saveToStorage = () => {
     localStorage.setItem("empty_list_full_reactjs", JSON.stringify(this.state));
@@ -168,7 +185,6 @@ class Body extends Component {
     reader.onload = function () { };
 
     let redero = reader.readAsText(file);
-    console.log(redero.result);
   };
 
   render() {
