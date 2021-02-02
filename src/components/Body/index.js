@@ -156,6 +156,8 @@ class Body extends Component {
   }
 
   saveToStorage = () => {
+    let empty_ = {}
+    localStorage.setItem("empty_list_full_reactjs", JSON.stringify(empty_));
     localStorage.setItem("empty_list_full_reactjs", JSON.stringify(this.state));
   };
 
