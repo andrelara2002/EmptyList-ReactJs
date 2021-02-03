@@ -141,24 +141,25 @@ class Body extends Component {
     let text = document.getElementById('title-input' + idx).value
 
     state_.listas[idx].name = text
-    this.setState({ state_ }, () => { this.saveToStorage() })
+    this.setState(state_, () => { this.saveToStorage() })
   }
 
   changeText = (idx, numero) => {
     let state_ = this.state
     let text = document.getElementById('task-title' +numero+idx).value
-    console.log(text)
 
     state_.listas[numero].description[idx] = text
-    this.setState({ state_ }, () => {
+    this.setState(state_, () => {
       this.saveToStorage()
     })
   }
 
+  
+
   saveToStorage = () => {
-    let empty_ = {}
     localStorage.clear()
     localStorage.setItem("empty_list_full_reactjs", JSON.stringify(this.state));
+    console.log(JSON.parse(localStorage.getItem('empty_list_full_reactjs')))
   };
 
   downloadFile = () => {
