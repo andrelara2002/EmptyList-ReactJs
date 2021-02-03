@@ -159,7 +159,6 @@ class Body extends Component {
   saveToStorage = () => {
     localStorage.clear()
     localStorage.setItem("empty_list_full_reactjs", JSON.stringify(this.state));
-    console.log(JSON.parse(localStorage.getItem('empty_list_full_reactjs')))
   };
 
   downloadFile = () => {
