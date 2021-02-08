@@ -50,7 +50,7 @@ class Body extends Component {
     copy_state.listas[numero].description.splice(num, 1);
     this.setState(
       {
-        copy_state
+        listas: copy_state.listas
       },
       () => {
         this.saveToStorage();
@@ -100,7 +100,7 @@ class Body extends Component {
 
     this.setState(
       {
-        copy_state
+        listas: copy_state.listas
       },
       () => {
         this.saveToStorage();
