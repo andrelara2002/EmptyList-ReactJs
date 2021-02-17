@@ -114,7 +114,7 @@ button {
 .list_inside_element {
   box-shadow: 0 0 22px 1px #e7e7e7;
   display: grid;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 12fr 1fr 2fr;
   grid-template-rows: 1fr;
   justify-content: center;
   align-items: center;
@@ -122,6 +122,11 @@ button {
   margin: 1rem 0 0 0;
   text-align: start;
   border-radius: 10px;
+
+  textarea{
+    height: auto;
+  }
+
 }
 .list_inside {
   padding: 1rem 0.7rem;

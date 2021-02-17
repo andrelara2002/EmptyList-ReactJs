@@ -80,8 +80,9 @@ class Body extends Component {
   getDescriptions = numero => {
     return this.state.listas[numero].description.map((value, idx) => {
       return (
-        <p className="list_inside_element">
-          <input id={'task-title' +numero+idx} value={value} onChange={() => { this.changeText(idx, numero) }} className='task-input' />
+        <p className="list_inside_element" id={"task" + numero + idx}>
+          <textarea id={'task-title' + numero + idx} value={value} onChange={() => { this.changeText(idx, numero) }} className='task-input' />
+          <input className="checkbox" id={"checkbox" + numero + idx} type="checkbox" onChange={() => { this.selectTask(numero.toString() + idx.toString()) }} />
           <button
             onClick={() => {
               this.deleteElement(idx, numero);
@@ -93,6 +94,25 @@ class Body extends Component {
       );
     });
   };
+
+  stringScratch = value =>{
+    if(value.lenght > 10){
+      let value_ = value.lenght / 10;
+      value.slice()
+    }
+  }
+
+  selectTask = task => {
+    let input_ = document.getElementById("task-title" + task);
+    let checkbox_ = document.getElementById("checkbox" + task);
+
+    if (checkbox_.checked === false) {
+      input_.style.textDecoration = 'none';
+    }
+    else {
+      input_.style.textDecoration = 'line-through';
+    }
+  }
 
   deleteList = num => {
     let copy_state = this.state;
@@ -146,7 +166,7 @@ class Body extends Component {
 
   changeText = (idx, numero) => {
     let state_ = this.state
-    let text = document.getElementById('task-title' +numero+idx).value
+    let text = document.getElementById('task-title' + numero + idx).value
 
     state_.listas[numero].description[idx] = text
     this.setState(state_, () => {
@@ -154,7 +174,7 @@ class Body extends Component {
     })
   }
 
-  
+
 
   saveToStorage = () => {
     localStorage.clear()
