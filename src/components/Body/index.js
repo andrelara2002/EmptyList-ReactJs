@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./styles.scss";
 import '../../style.css'
 import logo from '../../images/empty-list-logo.svg'
+import localdata from '../../service/localdata/my_notes_-_empty_list.json'
+import commands from '../../service/localdata/commands.json'
 //https://api.github.com/users/andrelara2002/repos
 class Body extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class Body extends Component {
           description: ["Exclua ela para começar!"]
         }
       ]
+
     };
   }
 
@@ -24,7 +27,10 @@ class Body extends Component {
 
   insertElementOnList() {
     let nome = document.getElementById("create_input").value;
-    if (nome != "") {
+    let command_check = this.checkCommand(nome)
+
+
+    if (nome != "" && command_check === false) {
       let listElement = {
         name: nome,
         description: []
@@ -39,8 +45,67 @@ class Body extends Component {
           this.saveToStorage();
         }
       );
-    } else {
+    } else if (nome === "" && command_check === false) {
       alert("Insira um Nome para a Lista");
+    }
+  }
+
+  checkCommand = valueComparable => {
+    document.getElementById("create_input").value = "";
+
+    switch (valueComparable) {
+      case "--help":
+        commands.data.map((value, idx) => {
+          console.log(value.nome + ": " + value.descrição)
+        })
+
+        return true;
+        break;
+
+      case "--delete-lists":
+        let autorizacao_delete = confirm("Deseja realmente apagar suas anotações?");
+        if (autorizacao_delete === true) {
+          localStorage.clear()
+
+          this.setState({}, () => {
+            this.insertLists()
+            window.location.reload(true);
+          })
+        }
+        return true;
+        break;
+
+      case "--get-from-localdata":
+        let autorizacao_localdata = confirm("Cuidado! Você está sobreescrevendo seus dados na nuvem, só faça isso em ambiente de desenvolvimento");
+
+        if (autorizacao_localdata === true) {
+          let state_ = this.state;
+          state_ = localdata;
+
+          this.setState(state_, () => {
+
+            this.insertLists();
+            document.getElementById("create_input").value = "";
+            this.saveToStorage();
+          })
+        }
+        else {
+          alert("Cancelado")
+        }
+        return true;
+        break;
+
+        case "--clear-localstorage":
+          let autorizacao_clearstorage = confirm('Atenção! Você está prestes a apagar todos os seus dados do armazenamento, deseja fazer isso?')
+
+          if(autorizacao_clearstorage === true){
+            localStorage.clear();
+            alert("Armazenamento apagado");
+          }
+        
+        default:
+        return false;
+        break;
     }
   }
 
@@ -95,8 +160,8 @@ class Body extends Component {
     });
   };
 
-  stringScratch = value =>{
-    if(value.lenght > 10){
+  stringScratch = value => {
+    if (value.lenght > 10) {
       let value_ = value.lenght / 10;
       value.slice()
     }

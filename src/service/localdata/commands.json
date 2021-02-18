@@ -1,0 +1,15 @@
+{"data" : [
+        {
+            "nome": "--help",
+            "descrição": "Mostra os Comandos do sistema"
+        },
+        {
+            "nome": "--delete-lists",
+            "descrição": "Deleta todas as listas"
+        },
+        {
+            "nome": "--get-from-localdata",
+            "descrição": "Recupera os dados locais ('Apenas para desenvolvedores')"
+        }
+    ]
+}
