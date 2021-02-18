@@ -112,7 +112,7 @@ button {
   padding: 1rem;
 }
 .list_inside_element {
-  box-shadow: 0 0 22px 1px #e7e7e7;
+  box-shadow: 0 0 8px 1px #e7e7e7;
   display: grid;
   grid-template-columns: 12fr 1fr 2fr;
   grid-template-rows: 1fr;
@@ -121,11 +121,23 @@ button {
   padding: 1rem;
   margin: 1rem 0 0 0;
   text-align: start;
+  transition: 300ms;
   border-radius: 10px;
+
+  &:hover{
+    box-shadow: 0 0 2px 1px #e7e7e7;
+    transition: 300ms;
+  }
 
   textarea{
     height: auto;
     line-height: 30px;
+    transition: 300ms;
+
+    &:hover{
+      border-color: var(--simple-green);
+      transition: 300ms;
+    }
   }
 
 }
@@ -133,6 +145,7 @@ button {
   padding: 1rem 0.7rem;
   margin: 10px;
   background: white;
+
 }
 .list_inside_element button {
   margin: 0 0 0 1rem;
@@ -190,9 +203,15 @@ li {
   }
   li {
     box-shadow: 0 0 22px 1px #e7e7e7;
+    transition: 300ms;
     border-radius: 0.6rem;
     padding: 1rem;
     margin: 1rem 1rem;
+
+    &:hover{
+      transition: 300ms;
+      box-shadow:  0 0 5px 1px #e7e7e7;
+    }
   }
   .input_div {
     border: none;
