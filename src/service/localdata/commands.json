@@ -10,6 +10,10 @@
         {
             "nome": "--get-from-localdata",
             "descrição": "Recupera os dados locais ('Apenas para desenvolvedores')"
+        },
+        {
+            "nome": "--project",
+            "descrição": "Adiciona data do projeto antes do título"
         }
     ]
 }

@@ -4,6 +4,7 @@ import '../../style.css'
 import logo from '../../images/empty-list-logo.svg'
 import localdata from '../../service/localdata/my_notes_-_empty_list.json'
 import commands from '../../service/localdata/commands.json'
+import date from 'date-and-time'
 //https://api.github.com/users/andrelara2002/repos
 class Body extends Component {
   constructor(props) {
@@ -25,12 +26,32 @@ class Body extends Component {
 
   componentDidMount() { }
 
+  enterPressed(event) {
+    var code = event.keyCode || event.which;
+    if (code === 13) {
+      this.insertElementOnList();
+    }
+  }
+
+
+  enterTaskInput(event){
+    var code = event.keyCode || event.which;
+    if (code === 13) {
+      this.insertTaskOnList()
+    }
+  }
+
   insertElementOnList() {
     let nome = document.getElementById("create_input").value;
     let command_check = this.checkCommand(nome)
 
+    if (command_check.type === "date" && nome != "") {
+      nome += command_check.date;
+      nome = nome.replace('--d', '')
+      console.log("Data Gerada " + nome)
+    }
 
-    if (nome != "" && command_check === false) {
+    if (nome != "" && command_check.response === false) {
       let listElement = {
         name: nome,
         description: []
@@ -45,7 +66,7 @@ class Body extends Component {
           this.saveToStorage();
         }
       );
-    } else if (nome === "" && command_check === false) {
+    } else if (nome === "" && command_check.response === false) {
       alert("Insira um Nome para a Lista");
     }
   }
@@ -53,13 +74,19 @@ class Body extends Component {
   checkCommand = valueComparable => {
     document.getElementById("create_input").value = "";
 
+    if (valueComparable.includes("--d")) {
+      const actual_date = date.format(new Date(), 'YYYY-MM-DD');
+
+      return { type: "date", response: false, date: actual_date }
+    }
+
     switch (valueComparable) {
       case "--help":
         commands.data.map((value, idx) => {
           console.log(value.nome + ": " + value.descrição)
         })
 
-        return true;
+        return { type: "commom", response: true };
         break;
 
       case "--delete-lists":
@@ -72,7 +99,7 @@ class Body extends Component {
             window.location.reload(true);
           })
         }
-        return true;
+        return { type: "commom", response: true };
         break;
 
       case "--get-from-localdata":
@@ -92,19 +119,18 @@ class Body extends Component {
         else {
           alert("Cancelado")
         }
-        return true;
+        return { type: "commom", response: true };
         break;
 
-        case "--clear-localstorage":
-          let autorizacao_clearstorage = confirm('Atenção! Você está prestes a apagar todos os seus dados do armazenamento, deseja fazer isso?')
+      case "--clear-localstorage":
+        let autorizacao_clearstorage = confirm('Atenção! Você está prestes a apagar todos os seus dados do armazenamento, deseja fazer isso?')
 
-          if(autorizacao_clearstorage === true){
-            localStorage.clear();
-            alert("Armazenamento apagado");
-          }
-        
-        default:
-        return false;
+        if (autorizacao_clearstorage === true) {
+          localStorage.clear();
+          alert("Armazenamento apagado");
+        }
+      default:
+        return { type: "commom", response: false }
         break;
     }
   }
@@ -200,7 +226,7 @@ class Body extends Component {
           <textarea rows='2' cols='30' style={{ resize: "none" }} className='title-input' value={value.name} id={'title-input' + idx} onChange={() => { this.changeTitle(idx) }} />
           <p>{this.getDescriptions(idx)}</p>
           <div className="input_task_session">
-            <input id={`input${idx}`} placeholder="Insira uma nota" />
+            <input id={`input${idx}`} placeholder="Insira uma nota" onClick={this.enterTaskInput.bind(this)} />
             <button
               onClick={() => {
                 this.insertTaskOnList({ idx });
@@ -283,7 +309,7 @@ class Body extends Component {
           <div className='minor-input'>
             <div className="input_div">
               <h2>TITULO</h2>
-              <input id="create_input" placeholder="Insira o título de sua lista" />
+              <input id="create_input" placeholder="Insira o título de sua lista" onKeyPress={this.enterPressed.bind(this)} />
             </div>
             <button
               className="full_button"
